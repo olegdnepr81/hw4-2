@@ -1,7 +1,5 @@
 package org.example;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,7 @@ public class ClientService {
         if (name.length() >= 2 & name.length() <= 1000) {
             try (Connection conn = Database.getInstance().getConnection();
                  PreparedStatement statSave = conn.prepareStatement(createSql);
-                 PreparedStatement maxId = conn.prepareStatement("SELECT MAX(ID) ID FROM CLIENT");
+                 PreparedStatement maxId = conn.prepareStatement("SELECT MAX(ID) ID FROM CLIENT")
             ) {
                 statSave.setString(1, name);
                 statSave.executeUpdate();
@@ -37,7 +35,7 @@ public class ClientService {
     public static String getById(long id) throws SQLException {
         String name = null;
         try (Connection conn = Database.getInstance().getConnection();
-             PreparedStatement statGetById = conn.prepareStatement(getById);
+             PreparedStatement statGetById = conn.prepareStatement(getById)
 
         ) {
             statGetById.setLong(1, id);
@@ -51,14 +49,10 @@ public class ClientService {
         return name;
     }
 
-    ;
-
-
     public static void setName(long id, String name) {
 
         try (Connection conn = Database.getInstance().getConnection();
-             PreparedStatement statSetNameById = conn.prepareStatement(setNameById);
-
+             PreparedStatement statSetNameById = conn.prepareStatement(setNameById)
         ) {
             statSetNameById.setString(1, name);
             statSetNameById.setLong(2, id);
@@ -68,11 +62,9 @@ public class ClientService {
         }
     }
 
-
     public static void deleteById(long id) {
         try (Connection conn = Database.getInstance().getConnection();
-             PreparedStatement statDelById = conn.prepareStatement(delById);
-
+             PreparedStatement statDelById = conn.prepareStatement(delById)
         ) {
             statDelById.setLong(1, id);
             statDelById.executeUpdate();
@@ -80,7 +72,6 @@ public class ClientService {
             throw new RuntimeException(e);
         }
     }
-
 
     public static List<Client> listAll() {
         List<Client> clients = new ArrayList<>();

@@ -12,7 +12,7 @@ public class InitDB {
                              "( ID IDENTITY(1,1) " +
                              "PRIMARY KEY, " +
                              "NAME VARCHAR (1000) " +
-                             "CHECK (Length(name)>2) NOT NULL);");
+                             "CHECK (Length(name)>2) NOT NULL);")
         ) {
             statCreateTable.executeUpdate();
         }
